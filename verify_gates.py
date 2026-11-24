@@ -105,6 +105,11 @@ add(f"- G1 word count: master Chinese story = {zh_chars} chars (companion Englis
 add(f"  assert: 700 <= zh_chars <= 900 (the brief's unit is 「约 800 字」)")
 add(f"- G2 section count: zh headings = {zh_heads}; en headings = {en_heads} "
     f"-> status={'PASS' if head_ok(zh_heads) and head_ok(en_heads) else 'FAIL'}")
+docx_sections_ok = bool(docx_text) and all(k in docx_text for k in
+                                           ("问题 · Problem", "方案 · Solution", "愿景 · Vision",
+                                            "Problem", "Solution", "Vision"))
+add(f"- G2b docx section coverage: sections present in brand_story.docx = {docx_sections_ok} "
+    f"-> status={'PASS' if docx_sections_ok else 'FAIL'}")
 add(f"- G3 banned list (zh: {'/'.join(BANNED_ZH)}; en: {'/'.join(BANNED_EN)}): "
     f"story hits = {story_hits or 0}, docx hits = {docx_hits or 0} "
     f"-> status={'PASS' if not story_hits and not docx_hits else 'FAIL'}")
@@ -117,8 +122,8 @@ add(f"- G5 fictional-scenario labels: zh = {labels_zh}, en = {labels_en} "
 add("")
 add("Gate summary: " + ("ALL PASS" if (
     700 <= zh_chars <= 900 and head_ok(zh_heads) and head_ok(en_heads)
-    and not story_hits and not docx_hits and all_true and not internal_hits
-    and labels_zh >= 1 and labels_en >= 1) else "FAILURES PRESENT"))
+    and docx_sections_ok and not story_hits and not docx_hits and all_true
+    and not internal_hits and labels_zh >= 1 and labels_en >= 1) else "FAILURES PRESENT"))
 
 print("\n".join(lines))
 (ROOT / "verification_log.md").write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")

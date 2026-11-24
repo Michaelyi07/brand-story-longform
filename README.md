@@ -20,10 +20,10 @@ opening scene ~120 / conflict tension ~160 / insight ~120 / turning point ~160 /
 
 ## Gates (all PASS; see verification_log.md)
 
-- G1 word count: master Chinese story 812 chars (700-900 required; the brief's unit is 「约 800 字」); companion English 502 words
-- G2 sections: exactly 3 headings containing Problem / Solution / Vision, both versions
+- G1 word count: master Chinese story 700-900 chars required (the brief's unit is 「约 800 字」 — the gate scope is the Chinese story section only, not the bilingual document total); the authoritative number is whatever `verification_log.md` records from the last script run. The companion English version is a faithful translation, not an independent 700-900-word deliverable.
+- G2 sections: exactly 3 headings containing Problem / Solution / Vision, checked in both the Markdown and the docx
 - G3 banned-list scan (最好/第一/最强/保证/绝对/翻倍/行业领先/遥遥领先 + best/#1/guarantee/amazing/world-class/revolutionary): 0 hits in md and docx
-- G4 fictional: character-table flags all true; no client/platform-internal identifiers in any file
+- G4 fictional: character-table flags all true; no client name in any file
 - G5 fictional-scenario labels present in both languages
 
 Re-run the gates:
